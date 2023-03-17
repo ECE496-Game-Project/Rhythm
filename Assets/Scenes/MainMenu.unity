@@ -642,6 +642,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6414769888057202293, guid: 82bdc60bb7cab9849b6e5e34214047bb, type: 3}
+      propertyPath: m_Text
+      value: Wave Stealth
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82bdc60bb7cab9849b6e5e34214047bb, type: 3}
 --- !u!224 &1836984032 stripped
