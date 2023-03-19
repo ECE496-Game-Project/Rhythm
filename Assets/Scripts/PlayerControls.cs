@@ -44,6 +44,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5a47db5-72ee-4bec-a5e4-d2da30d8b985"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -123,6 +132,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4eca2595-1181-4ee0-9c79-5969705f458b"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -150,6 +170,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Land = asset.FindActionMap("Land", throwIfNotFound: true);
         m_Land_Move = m_Land.FindAction("Move", throwIfNotFound: true);
         m_Land_Shoot = m_Land.FindAction("Shoot", throwIfNotFound: true);
+        m_Land_Jump = m_Land.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -211,12 +232,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private ILandActions m_LandActionsCallbackInterface;
     private readonly InputAction m_Land_Move;
     private readonly InputAction m_Land_Shoot;
+    private readonly InputAction m_Land_Jump;
     public struct LandActions
     {
         private @PlayerControls m_Wrapper;
         public LandActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Land_Move;
         public InputAction @Shoot => m_Wrapper.m_Land_Shoot;
+        public InputAction @Jump => m_Wrapper.m_Land_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -232,6 +255,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_LandActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnShoot;
+                @Jump.started -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_LandActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_LandActionsCallbackInterface = instance;
             if (instance != null)
@@ -242,6 +268,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -259,5 +288,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }
