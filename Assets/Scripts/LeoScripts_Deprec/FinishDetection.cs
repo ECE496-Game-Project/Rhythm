@@ -18,7 +18,7 @@ public class FinishDetection : MonoBehaviour
         
         if (collision.gameObject.transform.parent.name == "Player")
         {
-            PlayerController controller = player.GetComponent<PlayerController>();
+            PlayerController_deprec controller = player.GetComponent<PlayerController_deprec>();
             controller.IsMoving = false;
             SceneManager.LoadScene(_nextScence);
         }

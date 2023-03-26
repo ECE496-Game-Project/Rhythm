@@ -8,7 +8,7 @@ using System;
 using Cinemachine.Utility;
 using UnityEngine.InputSystem.HID;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController_deprec : MonoBehaviour
 {
     
     [SerializeField]

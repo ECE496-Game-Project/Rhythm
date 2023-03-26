@@ -10,12 +10,12 @@ public abstract class State
     public void SetStateMachine(StateMachine machine)
     {
         m_StateMachine = machine;
-    }
 
+    }
+    
     public virtual void Enter() { }
 
     public virtual State Execute() { return null; }
 
     public virtual void Exit() { }
 }
-
