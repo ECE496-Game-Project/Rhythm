@@ -216,7 +216,7 @@ public class JumpMovement : MonoBehaviour
 
         //float 
         float deltaHeight = _speed * Time.deltaTime;
-
+        
         switch (_jumpingState)
         {
             case EJumpingState.Standing:
