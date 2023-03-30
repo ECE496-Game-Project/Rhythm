@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FSM.PlayerStates;
+//using FSM.PlayerStates;
 //public class PlayerController : MonoBehaviour, IAgent
 //{
 //    public bool isAim;
