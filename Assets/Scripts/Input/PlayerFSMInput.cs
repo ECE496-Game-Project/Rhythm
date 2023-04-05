@@ -23,7 +23,7 @@ public class PlayerFSMInput : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Link");
     }
 
-    public void switchToInputMapping(/*Mapping Enum*/) {
+    public void SwitchToInputMapping(/*Mapping Enum*/) {
         //_playerInput.SwitchCurrentActionMap();
     }
 }
