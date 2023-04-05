@@ -3,6 +3,103 @@ using UnityEngine;
 using FSM;
 
 namespace HFSM.PlayerStates {
+
+    public class IdleState: State
+    {
+        PlayerController _controller;
+        public IdleState(PlayerController controller):base(needsExitTime: false) 
+        { 
+            _controller = controller;
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void OnLogic()
+        {
+            base.OnLogic();
+            _controller.MotionTransform(0f, timer.Elapsed, _controller._lerpDuration);
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
+    }
+
+    public class WalkState : State
+    {
+        PlayerController _controller;
+        public WalkState(PlayerController controller) : base(needsExitTime: false)
+        {
+            _controller = controller;
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void OnLogic()
+        {
+            base.OnLogic();
+            _controller.MotionTransform(_controller._walkSpeed, timer.Elapsed, _controller._lerpDuration);
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
+    }
+
+    public class AimIdleState : IdleState
+    {
+        public AimIdleState(PlayerController controller) : base(controller)
+        {
+
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void OnLogic()
+        {
+            base.OnLogic();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
+    }
+
+    public class AimWalkState : IdleState
+    {
+        public AimWalkState(PlayerController controller) : base(controller)
+        {
+
+        }
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void OnLogic()
+        {
+            base.OnLogic();
+        }
+
+        public override void OnExit()
+        {
+            base.OnExit();
+        }
+    }
+
     public class PlayerController : MonoBehaviour {
 
         private StateMachine _controlFSM;
@@ -34,11 +131,12 @@ namespace HFSM.PlayerStates {
             return 0;
         }
 
-        private void MotionTransform(float speedLimit, float timeElapse, float LerpDuration) {
+        public void MotionTransform(float speedLimit, float timeElapse, float LerpDuration) {
             _curSpeed = Mathf.Lerp(_curSpeed, speedLimit, timeElapse/LerpDuration);
             this.transform.position += _curSpeed * _move * Time.deltaTime;
         }
         
+
         private void updateAimableList() {
             // Get the current camera
             //Camera cam = Camera.current;
@@ -74,7 +172,7 @@ namespace HFSM.PlayerStates {
                 }
             );
 
-
+            
             motionFSM.AddState("Idle", IdleState);
             motionFSM.AddState("Walk", WalkState);
 
@@ -112,6 +210,12 @@ namespace HFSM.PlayerStates {
             
             _controlFSM.SetStartState("Normal");
             _controlFSM.Init();
+
+
+            var unAimFSM = new StateMachine();
+            unAimFSM.AddState("erwr", MotionFSMInitalize());
+            var aimFSM = new StateMachine();
+
         }
 
         private void Update() {
