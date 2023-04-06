@@ -279,9 +279,7 @@ namespace HFSM.PlayerStates {
             _controlFSM.Init();
 
 
-            var unAimFSM = new StateMachine();
-            unAimFSM.AddState("erwr", MotionFSMInitalize());
-            var aimFSM = new StateMachine();
+
 
         }
 
