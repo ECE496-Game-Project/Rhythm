@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerFSMInput : MonoBehaviour
 {
+
+    public enum EInputState{
+        Motion, Aim, Link
+    }
+
     public PlayerInput _playerInput;
 
     [Header("Motion Input Map")]
@@ -23,7 +28,8 @@ public class PlayerFSMInput : MonoBehaviour
         _playerInput.SwitchCurrentActionMap("Link");
     }
 
-    public void SwitchToInputMapping(/*Mapping Enum*/) {
+    public void SwitchToInputMapping(EInputState s) {
+
         //_playerInput.SwitchCurrentActionMap();
     }
 }

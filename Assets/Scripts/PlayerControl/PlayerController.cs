@@ -148,9 +148,12 @@ namespace HFSM.PlayerStates {
             //GameObject[] visibleObjects = GameObject.FindGameObjectsWithTag(tagToRetrieve).Where(obj => cam.IsObjectVisible(obj.transform)).ToArray();
         }
 
-        private StateMachine MotionFSMInitalize() {
+        private SpecialStateMachine MotionFSMInitalize()
+        {
 
-            StateMachine motionFSM = new StateMachine();
+            SpecialStateMachine motionFSM = new SpecialStateMachine(
+                onEnter: () => { _FSMInput.SwitchToInputMapping(PlayerFSMInput.EInputState.Motion); }
+                );
 
             State IdleState = new State(
                 onEnter: (state) => {
@@ -163,16 +166,16 @@ namespace HFSM.PlayerStates {
             );
 
             State WalkState = new State(
-                onEnter: (state) => { 
+                onEnter: (state) => {
                     //_animator.SetBool("PlayWalk", true); 
                 },
                 onLogic: (state) => MotionTransform(_walkSpeed, state.timer.Elapsed, _lerpDuration),
-                onExit: (state) => { 
+                onExit: (state) => {
                     //_animator.SetBool("PlayWalk", false); 
                 }
             );
 
-            
+
             motionFSM.AddState("Idle", IdleState);
             motionFSM.AddState("Walk", WalkState);
 
@@ -182,10 +185,74 @@ namespace HFSM.PlayerStates {
 
             return motionFSM;
         }
-#endregion
 
-        private StateMachine LinkFSMInitalize() {
-            StateMachine linkFSM = new StateMachine();
+        private SpecialStateMachine AimFSMInitalize()
+        {
+
+            SpecialStateMachine aimFSM = new SpecialStateMachine(
+                onEnter: () => { _FSMInput.SwitchToInputMapping(PlayerFSMInput.EInputState.Aim); }
+                );
+
+            return aimFSM;
+        }
+
+        //private StateMachine MotionFSMInitalize() {
+
+        //    StateMachine motionFSM = new StateMachine();
+
+        //    State IdleState = new State(
+        //        onEnter: (state) => {
+        //            //_animator.SetBool("PlayIdle", true);
+        //        },
+        //        onLogic: (state) => MotionTransform(0f, state.timer.Elapsed, _lerpDuration),
+        //        onExit: (state) => {
+        //            //_animator.SetBool("PlayIdle", false);
+        //        }
+        //    );
+
+        //    State WalkState = new State(
+        //        onEnter: (state) => { 
+        //            //_animator.SetBool("PlayWalk", true); 
+        //        },
+        //        onLogic: (state) => MotionTransform(_walkSpeed, state.timer.Elapsed, _lerpDuration),
+        //        onExit: (state) => { 
+        //            //_animator.SetBool("PlayWalk", false); 
+        //        }
+        //    );
+
+
+        //    motionFSM.AddState("Idle", IdleState);
+        //    motionFSM.AddState("Walk", WalkState);
+
+        //    motionFSM.AddTwoWayTransition("Idle", "Walk", t => _move.magnitude > 0.0f);
+
+        //    motionFSM.SetStartState("Idle");
+
+        //    return motionFSM;
+        //}
+        #endregion
+
+        //private StateMachine LinkFSMInitalize() {
+        //    StateMachine linkFSM = new StateMachine();
+
+        //    State IdleState = new State(
+        //        onEnter: (state) => {
+        //            //_animator.SetBool("PlayIdle", true);
+        //        },
+        //        onLogic: (state) => MotionTransform(0f, state.timer.Elapsed, _lerpDuration),
+        //        onExit: (state) => {
+        //            //_animator.SetBool("PlayIdle", false);
+        //        }
+        //    );
+
+        //    return linkFSM;
+        //}
+
+        private SpecialStateMachine LinkFSMInitalize()
+        {
+            SpecialStateMachine linkFSM = new SpecialStateMachine(
+                onEnter: () => { _FSMInput.SwitchToInputMapping(PlayerFSMInput.EInputState.Link); }
+                );
 
             State IdleState = new State(
                 onEnter: (state) => {

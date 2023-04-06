@@ -31,7 +31,8 @@ public class SpecialStateMachine: StateMachine
 
     public override void OnExit()
     {
-        _onExit?.Invoke();
+        
         base.OnExit();
+        _onExit?.Invoke();
     }
 }
