@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using UnityEngine;
-using InputController;
+using SupportiveLib;
 
-namespace GameManager {
-    public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour {
 
-        InputController.InputController _InputController;
+    InputController _InputController;
+    WaveManager _WaveManager;
+    Timer m_Timer;
 
-        // Use this for initialization
-        void Start() {
+    void Awake()
+    {
+        // m_Timer = new Timer(, );
+    }
 
-        }
 
-        // Update is called once per frame
-        void Update() {
+    // Use this for initialization
+    void Start() {
+        GetComponent<InputController>();
+    }
 
-        }
+    // Update is called once per frame
+    void Update() {
+        // m_Timer.Update();
     }
 }

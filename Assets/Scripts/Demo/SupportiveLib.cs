@@ -13,6 +13,17 @@ namespace SupportiveLib{
     
     public class InputPack
     {
+        public InputPack(float value=0f, float startTime=-1f, float endTime=-1f)
+        {
+            _Value = value;
+            _StartTime = startTime;
+            _EndTime = endTime;
+        }
+
+        public override string ToString()
+        {
+            return $"Value: {_Value} StartTime: {_StartTime}, EndTime: {_EndTime}";
+        }
         public float _Value = 0f;
         public float _StartTime = -1f;
         public float _EndTime = -1f;
@@ -26,12 +37,43 @@ namespace SupportiveLib{
 
         AudioClip m_RhythmSource;
         BeatList m_BeatAnswer;
-        private void Start() { m_BeatPeriod = 60 / m_BPM; }
-        private void OnInspectorGUI() {}
+        
+        private void Start() 
+        { 
+            m_BeatPeriod = 60 / m_BPM; 
+        }
+
+        private void OnInspectorGUI() 
+        {
+
+        }
     }
 
-    public class Timer
-    {
-	    
-    }
+     public class Timer
+     {
+         float _currTime;
+         public float m_TimeLimit;
+         private Action m_TimerOperation;
+         
+         public Timer(float timeLimit, Action timerOperation)
+         {
+             _currTime = 0f;
+             m_TimeLimit = timeLimit;
+             m_TimerOperation = timerOperation;
+         }
+         
+         public void ResetTimer()
+         {
+             _currTime = 0f;
+         }
+         
+         public void Update()
+         {
+             _currTime += Time.deltaTime;
+             if(_currTime >= m_TimeLimit)
+             {
+                 m_TimerOperation?.Invoke();
+             }
+         }
+     }
 }
