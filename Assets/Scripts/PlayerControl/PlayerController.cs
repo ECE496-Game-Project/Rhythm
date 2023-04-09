@@ -193,6 +193,33 @@ namespace HFSM.PlayerStates {
                 onEnter: () => { _FSMInput.SwitchToInputMapping(PlayerFSMInput.EInputState.Aim); }
                 );
 
+            State IdleState = new State(
+               onEnter: (state) => {
+                   //_animator.SetBool("PlayIdle", true);
+               },
+               onLogic: (state) => MotionTransform(0f, state.timer.Elapsed, _lerpDuration),
+               onExit: (state) => {
+                   //_animator.SetBool("PlayIdle", false);
+               }
+           );
+
+            State WalkState = new State(
+                onEnter: (state) => {
+                    //_animator.SetBool("PlayWalk", true); 
+                },
+                onLogic: (state) => MotionTransform(_walkSpeed/2, state.timer.Elapsed, _lerpDuration),
+                onExit: (state) => {
+                    //_animator.SetBool("PlayWalk", false); 
+                }
+            );
+
+
+            aimFSM.AddState("Idle", IdleState);
+            aimFSM.AddState("Walk", WalkState);
+
+            aimFSM.AddTwoWayTransition("Idle", "Walk", t => _move.magnitude > 0.0f);
+
+            aimFSM.SetStartState("Idle");
             return aimFSM;
         }
 

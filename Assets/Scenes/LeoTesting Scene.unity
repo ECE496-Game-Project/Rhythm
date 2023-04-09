@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 222872848}
   - component: {fileID: 222872847}
   - component: {fileID: 222872846}
+  - component: {fileID: 222872849}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -318,6 +319,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222872844}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &222872849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222872844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843ffc0a706a8df458da566a45f61de8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerInput: {fileID: 0}
+  _waveAction:
+    m_Name: Wave
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b604bfbe-a0f7-441b-bdfe-03ebc58e5c73
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  _threshold: 0
 --- !u!1 &637040910
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,8 +383,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1075894046}
   - component: {fileID: 1075894045}
-  - component: {fileID: 1075894044}
-  - component: {fileID: 1075894048}
   - component: {fileID: 1075894047}
   m_Layer: 0
   m_Name: Player
@@ -369,28 +391,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1075894044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075894043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9417576fce5c9ae46a7471ba32f95438, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 1075894045}
-  _playerInput: {fileID: 1075894047}
-  _groundDetector: {fileID: 1075894048}
-  _maximumHeight: 10
-  _jumpingGravity: 10
-  _fallingGravity: 10
-  _airJumpTolerance: 50
-  _terminalVelocity: 5
-  _coyoteTime: 2
-  _jumpingState: 0
 --- !u!54 &1075894045
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -451,24 +451,9 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Land
+  m_DefaultActionMap: Motion
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1075894048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075894043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 507953aaac0d3644c9084270c243578a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _feet: {fileID: 637040911}
-  _tolerance: 0.01
-  _onGround: 0
 --- !u!1 &1259772987
 GameObject:
   m_ObjectHideFlags: 0
