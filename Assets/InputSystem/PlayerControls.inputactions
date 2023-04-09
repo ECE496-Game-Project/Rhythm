@@ -259,6 +259,56 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Wave",
+            "id": "5e45e281-c8c3-4053-8bbd-566807e909d0",
+            "actions": [
+                {
+                    "name": "Waving",
+                    "type": "Button",
+                    "id": "ab02ab0b-76db-44a7-9aa3-a2b1729a4268",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Arrows",
+                    "id": "2708dff0-254e-4f8b-9cac-b45534df9fde",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Waving",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f14278a9-01ff-4443-b5ee-a46d63f1b56c",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Waving",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "f0936b72-2697-4eb0-a4ec-0a30b1cc4e56",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Waving",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": [

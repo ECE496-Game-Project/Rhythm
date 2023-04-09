@@ -19,7 +19,7 @@ public class PlayerFSMInput : MonoBehaviour
         _aimAction = _playerInput.actions["Aim"];
         _connectAction = _playerInput.actions["Connect"];
         _switchTargetAction = _playerInput.actions["SwitchTarget"];
-
+        
         _playerInput.SwitchCurrentActionMap("Link");
     }
 
