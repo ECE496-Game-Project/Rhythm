@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 
 
 public class InputController : MonoBehaviour {
+    private static InputController _instance;
+    public static InputController Instance { get => _instance; }
+
     [HideInInspector]
     public PlayerInput _playerInput;
     [HideInInspector]
@@ -18,7 +21,6 @@ public class InputController : MonoBehaviour {
 
     public UnityEvent OnRythmChange;
 
-    //public bool _trigger = false;
 
     public void OnRythmButtonPressed(InputAction.CallbackContext context)
     {
@@ -29,10 +31,7 @@ public class InputController : MonoBehaviour {
     {
         _currentIP = new InputPack(context.ReadValue<float>(), Time.time);
         _inputCache.Enqueue(_currentIP);
-        foreach(var pack in _inputCache)
-        {
-            Debug.Log(pack.ToString());
-        }
+        
             
     }
 
@@ -44,10 +43,7 @@ public class InputController : MonoBehaviour {
     public void WavingCancel(InputAction.CallbackContext context)
     {
         _currentIP._EndTime = Time.time;
-        foreach (var pack in _inputCache)
-        {
-            Debug.Log(pack.ToString());
-        }
+       
     }
 
     public void ClearCache()
@@ -69,7 +65,9 @@ public class InputController : MonoBehaviour {
 
     // Use this for initialization
     void Awake()
-    { 
+    {
+        if (Instance == null) { _instance = this; }
+        else { Destroy(gameObject); }
 
         _playerInput = GetComponent<PlayerInput>();
             
@@ -95,12 +93,4 @@ public class InputController : MonoBehaviour {
         _waveAction.canceled -= WavingCancel;
     }
 
-    //private void Update()
-    //{
-    //    if (_trigger)
-    //    {
-    //        _trigger = false;
-    //        ClearCache();
-    //    }
-    //}
 }

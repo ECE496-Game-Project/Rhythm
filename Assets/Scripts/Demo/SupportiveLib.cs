@@ -36,6 +36,10 @@ namespace SupportiveLib{
         float m_BeatPeriod;
 
         AudioClip m_RhythmSource;
+        public AudioClip RhythmSource
+        {
+            get { return m_RhythmSource; }
+        }
         BeatList m_BeatAnswer;
         
         private void Start() 
