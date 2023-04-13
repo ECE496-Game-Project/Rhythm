@@ -52,10 +52,7 @@ public class InputController : MonoBehaviour {
         {
             _inputCache.Dequeue();
         }
-        foreach (var pack in _inputCache)
-        {
-            Debug.Log(pack.ToString());
-        }
+
     }
 
     public Queue<InputPack> GetICCCache()

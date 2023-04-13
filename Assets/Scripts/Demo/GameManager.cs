@@ -6,26 +6,53 @@ public class GameManager : MonoBehaviour {
 
     private static GameManager _instance;
     public static GameManager Instance { get => _instance; }
-    InputController _InputController;
-    WaveManager _WaveManager;
+
     Timer m_Timer;
 
-    void Awake()
+    private void Awake()
     {
-        if (Instance == null) { _instance = this; }
-        else { Destroy(gameObject); }
-
-        // m_Timer = new Timer(, );
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else { Destroy(gameObject); }   
     }
 
+    void Start()
+    {
+        
+        
+        
+        // RhythmManager ChangeRhythm赋值给InputController的OnRythmChange
+        InputController.Instance.OnRythmChange.AddListener(ChangeRhythm);
 
-    // Use this for initialization
-    void Start() {
-        GetComponent<InputController>();
+        
+
+    }
+    void ChangeRhythm(){
+        // BeatTimer
+        RhythmManager.Instance.SelectRhythm(1);
+        var period = RhythmManager.Instance.m_CurrRhythm.m_BeatPeriod;
+        m_Timer = new Timer(period, OnBeat);
+
+        WaveManager.Instance.WaveStart();
     }
 
+    
     // Update is called once per frame
     void Update() {
-        // m_Timer.Update();
+        // BeatTimer Update
+        m_Timer?.Update();
     }
+
+    void OnBeat()
+    {
+        if(WaveManager.Instance.Wave()){
+            // WaveManager Wave BeatTimer Reset
+            m_Timer = null;
+            RhythmManager.Instance.PlayRhythm();
+        }
+    }
+
+    
 }

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public class RhythmManager : MonoBehaviour
 {
-    private RhythmManager _instace;
-    public RhythmManager Instance { get => _instace; }
-
+    private static RhythmManager _instance;
+    public static RhythmManager Instance { get => _instance; }
+    
     AudioSource _audioSource;
     [SerializeField] List<Rhythm> RhythmList; // The first element is a defualt empty rhythm
     int m_RhythmIdx;
@@ -35,9 +35,9 @@ public class RhythmManager : MonoBehaviour
 
     private void Awake()
     {
-        if (_instace == null)
+        if (_instance == null)
         {
-            _instace = this;
+            _instance = this;
         }
         else { Destroy(gameObject); }
     }

@@ -5,8 +5,20 @@ using UnityEngine.InputSystem;
 using System;
 
 namespace SupportiveLib{
-    using BeatType = Tuple<NoteType, WaveType>;
-    using BeatList = List<Tuple<NoteType, WaveType>>;
+    public class BeatType{
+        public NoteType _NoteType;
+        public WaveType _WaveType;
+    }
+
+    public class BeatList {
+       public List<BeatType> _List;
+
+       public BeatList(){
+        _List = new List<BeatType>();
+       }
+    }
+
+
 
     public enum NoteType {HIGH = 1, MID = 0, LOW = -1, INVALID = -2}
     public enum WaveType { IMPULSE = 0, CONTINOUS = 1, INVALID = -1}
@@ -32,17 +44,17 @@ namespace SupportiveLib{
     public class Rhythm
     {
         public int m_BPM;
-        float m_Meter;
-        float m_BeatPeriod;
+        public float m_Meter;
+        public float m_BeatPeriod;
 
         AudioClip m_RhythmSource;
         public AudioClip RhythmSource
         {
             get { return m_RhythmSource; }
         }
-        BeatList m_BeatAnswer;
+        public BeatList m_BeatAnswer;
         
-        private void Start() 
+        private void Awake() 
         { 
             m_BeatPeriod = 60 / m_BPM; 
         }
@@ -77,7 +89,11 @@ namespace SupportiveLib{
              if(_currTime >= m_TimeLimit)
              {
                  m_TimerOperation?.Invoke();
+                 ResetTimer();
              }
          }
      }
+
+    
+
 }
