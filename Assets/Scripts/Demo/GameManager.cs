@@ -1,58 +1,62 @@
-﻿using System.Collections;
-using UnityEngine;
-using SupportiveLib;
+﻿// using System.Collections;
+// using UnityEngine;
+// using SupportiveLib;
 
-public class GameManager : MonoBehaviour {
+// public class GameManager : MonoBehaviour {
 
-    private static GameManager _instance;
-    public static GameManager Instance { get => _instance; }
+//     private static GameManager _instance;
+//     public static GameManager Instance { get => _instance; }
 
-    Timer m_Timer;
+//     Timer m_Timer;
 
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
-        else { Destroy(gameObject); }   
-    }
+//     private void Awake()
+//     {
+//         if (_instance == null)
+//         {
+//             _instance = this;
+//         }
+//         else { Destroy(gameObject); }   
+//     }
 
-    void Start()
-    {
-        
-        
-        
-        // RhythmManager ChangeRhythm赋值给InputController的OnRythmChange
-        InputController.Instance.OnRythmChange.AddListener(ChangeRhythm);
+//     void Start()
+//     {
+//         // RhythmManager ChangeRhythm赋值给InputController的OnRythmChange
+//         //InputController.Instance.OnRythmChange.AddListener(ChangeRhythm);
 
-        
+//         testWave();
+//     }
+//     void testWave() {
+//         // BeatTimer
+//         var period = 1.0f;
+//         m_Timer = new Timer(period, OnBeat);
 
-    }
-    void ChangeRhythm(){
-        // BeatTimer
-        RhythmManager.Instance.SelectRhythm(1);
-        var period = RhythmManager.Instance.m_CurrRhythm.m_BeatPeriod;
-        m_Timer = new Timer(period, OnBeat);
+//         WaveManager.Instance.WaveStart();
+//     }
 
-        WaveManager.Instance.WaveStart();
-    }
+//     void ChangeRhythm(){
+//         // BeatTimer
+//         RhythmManager.Instance.SelectRhythm(1);
+//         var period = RhythmManager.Instance.m_CurrRhythm.m_BeatPeriod;
+//         m_Timer = new Timer(period, OnBeat);
 
-    
-    // Update is called once per frame
-    void Update() {
-        // BeatTimer Update
-        m_Timer?.Update();
-    }
-
-    void OnBeat()
-    {
-        if(WaveManager.Instance.Wave()){
-            // WaveManager Wave BeatTimer Reset
-            m_Timer = null;
-            RhythmManager.Instance.PlayRhythm();
-        }
-    }
+//         WaveManager.Instance.WaveStart();
+//     }
 
     
-}
+//     // Update is called once per frame
+//     void Update() {
+//         // BeatTimer Update
+//         m_Timer?.Update();
+//     }
+
+//     void OnBeat()
+//     {
+//         if(WaveManager.Instance.Wave()){
+//             // WaveManager Wave BeatTimer Reset
+//             m_Timer = null;
+//             RhythmManager.Instance.PlayRhythm();
+//         }
+//     }
+
+    
+// }

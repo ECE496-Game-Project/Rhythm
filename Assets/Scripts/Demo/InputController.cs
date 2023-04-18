@@ -16,8 +16,6 @@ public class InputController : MonoBehaviour {
     public InputAction _waveAction;
     public Queue<InputPack> _inputCache;
 
-    private InputPack _currentIP;
-    public float _threshold;
 
     public UnityEvent OnRythmChange;
 
@@ -29,8 +27,7 @@ public class InputController : MonoBehaviour {
 
     public void WavingStart(InputAction.CallbackContext context)
     {
-        _currentIP = new InputPack(context.ReadValue<float>(), Time.time);
-        _inputCache.Enqueue(_currentIP);
+        _inputCache.Enqueue(new InputPack(context.ReadValue<float>()));
         
             
     }
@@ -42,13 +39,13 @@ public class InputController : MonoBehaviour {
 
     public void WavingCancel(InputAction.CallbackContext context)
     {
-        _currentIP._EndTime = Time.time;
+        _inputCache.Enqueue(new InputPack(0));
        
     }
 
     public void ClearCache()
     {
-        while(_inputCache.Count != 0 && _inputCache.Peek()._EndTime != -1f)
+        while(_inputCache.Count != 0)
         {
             _inputCache.Dequeue();
         }

@@ -8,37 +8,43 @@ namespace SupportiveLib{
     public class BeatType{
         public NoteType _NoteType;
         public WaveType _WaveType;
+
+        public BeatType(NoteType noteType, WaveType waveType) {
+            _NoteType = noteType;
+            _WaveType = waveType;
+        }
     }
 
     public class BeatList {
-       public List<BeatType> _List;
+        public List<BeatType> _List;
 
-       public BeatList(){
-        _List = new List<BeatType>();
-       }
+        public BeatList(){
+            _List = new List<BeatType>();
+        }
+        
     }
 
 
 
     public enum NoteType {HIGH = 1, MID = 0, LOW = -1, INVALID = -2}
-    public enum WaveType { IMPULSE = 0, CONTINOUS = 1, INVALID = -1}
+    public enum WaveType { IMPULSE = 0, CONTIPRESS = 1, CONTIRELEASE = 2, CONTINUOUS = 3, INVALID = -1}
     
     public class InputPack
     {
-        public InputPack(float value=0f, float startTime=-1f, float endTime=-1f)
+        public InputPack(float value=0f/* , float startTime=-1f, float endTime=-1f */)
         {
             _Value = value;
-            _StartTime = startTime;
-            _EndTime = endTime;
+            // _StartTime = startTime;
+            // _EndTime = endTime;
         }
 
-        public override string ToString()
-        {
-            return $"Value: {_Value} StartTime: {_StartTime}, EndTime: {_EndTime}";
-        }
+        // public override string ToString()
+        // {
+        //     return $"Value: {_Value} StartTime: {_StartTime}, EndTime: {_EndTime}";
+        // }
         public float _Value = 0f;
-        public float _StartTime = -1f;
-        public float _EndTime = -1f;
+        // public float _StartTime = -1f;
+        // public float _EndTime = -1f;
     }
 
     public class Rhythm
