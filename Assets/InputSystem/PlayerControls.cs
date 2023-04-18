@@ -300,7 +300,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Arrows"",
                     ""id"": ""2708dff0-254e-4f8b-9cac-b45534df9fde"",
-                    ""path"": ""1DAxis(minValue=1,maxValue=2)"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

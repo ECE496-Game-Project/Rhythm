@@ -38,10 +38,10 @@ namespace SupportiveLib{
             // _EndTime = endTime;
         }
 
-        // public override string ToString()
-        // {
-        //     return $"Value: {_Value} StartTime: {_StartTime}, EndTime: {_EndTime}";
-        // }
+        public override string ToString()
+        {
+            return $"Value: {_Value}";
+        }
         public float _Value = 0f;
         // public float _StartTime = -1f;
         // public float _EndTime = -1f;

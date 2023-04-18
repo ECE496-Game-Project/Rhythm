@@ -15,10 +15,19 @@ public class WaveManager : MonoBehaviour {
 
     private BeatList _answer;
 
+
+    public RectTransform _rectTransform;
+    
+    public Vector3 _originalPosition;
+
+    public Vector3 _step;
+    
     public void BeatValidation(){
         var cache = InputController.Instance.GetICCCache();
         int beatValid = 0;
-        
+        foreach(var ip in cache){
+            Debug.Log(ip._Value);
+        }
         // restart if more than 2 input actions happen
         if (cache.Count > 2){
             _successBeat = 0;
@@ -105,11 +114,15 @@ public class WaveManager : MonoBehaviour {
         switch(beatValid){
             case 0:
                 _successBeat = 0;
+                ResetPointer();
                 break;
             case 1:
                 _successBeat++;
+                MovePointerToNext();
                 break;
         }
+
+        InputController.Instance.ClearCache();
 
         // // InputPack longestIP = null;
         // // float previousDuration = float.PositiveInfinity;
@@ -159,12 +172,20 @@ public class WaveManager : MonoBehaviour {
         // }
     }
 
+    private void MovePointerToNext(){
+        _rectTransform.position += _step;
+    }
+
+    private void ResetPointer(){
+        _rectTransform.position = _originalPosition;
+    }
 
     public void DrawWave(){
         //draw wave
     }
 
     public void Beat(){
+        Debug.Log("beat");
         BeatValidation();
         DrawWave();
     }
@@ -181,6 +202,7 @@ public class WaveManager : MonoBehaviour {
     private void Start(){
         var period = 1.0f;
         m_Timer = new Timer(period, Beat);
+        _originalPosition = _rectTransform.position;
 
         _answer= new BeatList();
         _answer._List.Add(new BeatType(NoteType.HIGH, WaveType.IMPULSE));
